@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.Observer
 
 class MainActivity : AppCompatActivity() {
 val miviewmodel: MiviewModel by viewModels()
@@ -28,6 +29,11 @@ val miviewmodel: MiviewModel by viewModels()
             insets
         }
         etiqueta=findViewById<TextView>(R.id.textView)
+
+        //Defino el observador del viewmodel
+        miviewmodel.dato.observe(this, Observer<Int> {
+            etiqueta.text=it.toString()
+        })
 
         Log.i("CICLO_VIDA","Se ejecuta el método onCreate, se crea la Actividad")
 
@@ -51,13 +57,12 @@ val miviewmodel: MiviewModel by viewModels()
         etiqueta.text= miviewmodel.dato.toString()
         findViewById<Button>(R.id.button_menos).setOnClickListener {
 
-            miviewmodel.dato--
-            etiqueta.text=miviewmodel.dato.toString()
+            miviewmodel.decrementar()
+
 
         }
         findViewById<Button>(R.id.button_mas).setOnClickListener {
-          miviewmodel.dato++
-            etiqueta.text=miviewmodel.dato.toString()
+        miviewmodel.incrementar()
         }
     }
 
