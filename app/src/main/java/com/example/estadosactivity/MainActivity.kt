@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -15,7 +16,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.DialogFragment
 
 class MainActivity : AppCompatActivity() {
- var valor:Int=0
+val miviewmodel: MiviewModel by viewModels()
     lateinit var etiqueta: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,16 +48,16 @@ class MainActivity : AppCompatActivity() {
             var intent= Intent(this, SegundaActividad::class.java)
             startActivity(intent)
         }
-        etiqueta.text=valor.toString()
+        etiqueta.text= miviewmodel.dato.toString()
         findViewById<Button>(R.id.button_menos).setOnClickListener {
 
-            valor--
-            etiqueta.text=valor.toString()
+            miviewmodel.dato--
+            etiqueta.text=miviewmodel.dato.toString()
 
         }
         findViewById<Button>(R.id.button_mas).setOnClickListener {
-            valor++
-            etiqueta.text=valor.toString()
+          miviewmodel.dato++
+            etiqueta.text=miviewmodel.dato.toString()
         }
     }
 
