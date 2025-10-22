@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.button_mas).setOnClickListener {
             valor++
             etiqueta.text=valor.toString()
+            ejemplo(b="hola",c=4f,a=5)
         }
     }
 
@@ -86,6 +87,8 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         Log.i("CICLO_VIDA","Se ejecuta el método onDestroy, la actividad muere")
     }
+
+    fun ejemplo(a:Int,b:String,c:Float)="$a $b $c"
 }
 
 class MiDialogoFragment: DialogFragment(){
